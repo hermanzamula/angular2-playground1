@@ -1,3 +1,6 @@
-<p>
-  notes works!
-</p>
+<h3>Notes</h3>
+<ul>
+  <li *ngFor="let note of notes">{{note.text}}</li>
+</ul>
+<textarea #noteText></textarea>
+<button (click)="addNote(noteText.value); noteText.value = ''">Add Note</button>

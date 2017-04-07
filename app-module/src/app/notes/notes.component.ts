@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {Note} from './note';
+import {Headers, Http, Response} from '@angular/http';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent {
 
-  constructor() { }
+  notes: Note[] = [];
+  endpoint = "http://localhost:3000/notes";
 
-  ngOnInit() {
+  constructor(private http:Http) {
+    this.init();
+  }
+
+  init() {
+    this.http.get(this.endpoint).subscribe((resp:Response)=> this.notes = resp.json());
+  }
+
+  addNote(text){
+    let items = {text};
+    this.notes.push(items);
+    let headers = new Headers();
+    headers.append('Content-type', "application/json");
+    this.http.post(this.endpoint, JSON.stringify(items), {headers}).subscribe((e)=>e);
   }
 
 }
