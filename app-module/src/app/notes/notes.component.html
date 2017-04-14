@@ -2,5 +2,8 @@
 <ul>
   <li *ngFor="let note of notes">{{note.text}}</li>
 </ul>
-<textarea #noteText></textarea>
-<button (click)="addNote(noteText.value); noteText.value = ''">Add Note</button>
+<form class="form-inline">
+  <textarea class="form-control" id="noteText" #noteText></textarea>
+  <button class="btn btn-success" (click)="addNote(noteText.value); noteText.value = ''">Add Note</button>
+</form>
+
