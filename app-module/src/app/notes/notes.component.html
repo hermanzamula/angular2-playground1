@@ -1,7 +1,13 @@
 <h3>Notes</h3>
-<ul>
-  <li *ngFor="let note of notes">{{note.text}}</li>
-</ul>
+ <div>
+   <div *ngFor="let note of notes" >
+     <div class="row">
+       <div class="col-md-3">{{note.text}}</div>
+       <a class="col-md-1" role="button" (click)="removeNote(note)" >X</a>
+     </div>
+   </div>
+ </div>
+
 <form class="form-inline">
   <textarea class="form-control" id="noteText" #noteText></textarea>
   <button class="btn btn-success" (click)="addNote(noteText.value); noteText.value = ''">Add Note</button>
